@@ -1,45 +1,185 @@
-# IntelliJ IDEA
-.idea/
-*.iml
-*.iws
-*.ipr
-
-# Gradle
+## Gradle:
 .gradle/
-build/
-out/
-!gradle/wrapper/gradle-wrapper.jar
+gradle-app.setting
+/build/
+/android/build/
+/core/build/
+/lwjgl2/build/
+/lwjgl3/build/
+/html/build/
+/teavm/build/
+/ios/build/
+/ios-moe/build/
+/headless/build/
+/server/build/
+/shared/build/
 
-# Java / build artifacts
+## Java:
 *.class
-*.jar
 *.war
 *.ear
-*.log
-*.tmp
+hs_err_pid*
+.attach_pid*
 
-# Maven
-target/
-
-# IDE & editor configs
-.vscode/
-*.swp
-
-# Eclipse
-.project
-.classpath
-.settings/
-
-# Local properties (SDK paths, local config)
+## Android:
+/android/libs/armeabi-v7a/
+/android/libs/arm64-v8a/
+/android/libs/x86/
+/android/libs/x86_64/
+/android/gen/
+/android/out/
 local.properties
+com_crashlytics_export_strings.xml
 
-# Keystores and sensitive files
-*.keystore
+## Robovm:
+/ios/robovm-build/
 
-# OS files
+## iOS:
+/ios/xcode/*.xcodeproj/*
+!/ios/xcode/*.xcodeproj/xcshareddata
+!/ios/xcode/*.xcodeproj/project.pbxproj
+/ios/xcode/native/
+/ios/IOSLauncher.app
+/ios/IOSLauncher.app.dSYM
+
+## GWT:
+/html/war/
+/html/gwt-unitCache/
+.apt_generated/
+/html/war/WEB-INF/deploy/
+/html/war/WEB-INF/classes/
+.gwt/
+gwt-unitCache/
+www-test/
+.gwt-tmp/
+
+## TeaVM:
+# Not sure yet...
+
+## IntelliJ, Android Studio:
+.idea/
+*.ipr
+*.iws
+*.iml
+
+## Eclipse:
+.classpath
+.project
+.metadata/
+/android/bin/
+/core/bin/
+/lwjgl2/bin/
+/lwjgl3/bin/
+/html/bin/
+/teavm/bin/
+/ios/bin/
+/ios-moe/bin/
+/headless/bin/
+/server/bin/
+/shared/bin/
+*.tmp
+*.bak
+*.swp
+*~.nib
+.settings/
+.loadpath
+.externalToolBuilders/
+*.launch
+
+
+## NetBeans:
+
+/nbproject/private/
+/android/nbproject/private/
+/core/nbproject/private/
+/lwjgl2/nbproject/private/
+/lwjgl3/nbproject/private/
+/html/nbproject/private/
+/teavm/nbproject/private/
+/ios/nbproject/private/
+/ios-moe/nbproject/private/
+/headless/nbproject/private/
+/server/nbproject/private/
+/shared/nbproject/private/
+
+/nbbuild/
+/android/nbbuild/
+/core/nbbuild/
+/lwjgl2/nbbuild/
+/lwjgl3/nbbuild/
+/html/nbbuild/
+/teavm/nbbuild/
+/ios/nbbuild/
+/ios-moe/nbbuild/
+/headless/nbbuild/
+/server/nbbuild/
+/shared/nbbuild/
+
+/dist/
+/android/dist/
+/core/dist/
+/lwjgl2/dist/
+/lwjgl3/dist/
+/html/dist/
+/teavm/dist/
+/ios/dist/
+/ios-moe/dist/
+/headless/dist/
+/server/dist/
+/shared/dist/
+
+/nbdist/
+/android/nbdist/
+/core/nbdist/
+/lwjgl2/nbdist/
+/lwjgl3/nbdist/
+/html/nbdist/
+/teavm/nbdist/
+/ios/nbdist/
+/ios-moe/nbdist/
+/headless/nbdist/
+/server/nbdist/
+/shared/nbdist/
+
+nbactions.xml
+nb-configuration.xml
+
+## OS-Specific:
 .DS_Store
 Thumbs.db
 
-# Optional: ignore user-specific run configs
-run/
+## Miscellaneous:
+*~
+*.*#
+*#*#
+/.kotlin/
+/assets/assets.txt
 
+## Special cases:
+**/resource-config.json
+
+# libGDX specific adjustments:
+# - Garantir que as pastas de assets sejam versionadas (não sejam ignoradas por regras gerais).
+# - Ignorar saídas de build nativas / libs geradas pelos backends desktop/lwjgl.
+# (Adicione abaixo; mantenha as entradas de assets com '!' para incluí-las.)
+!/core/assets/
+!/core/assets/**
+!/android/assets/
+!/android/assets/**
+
+# Desktop / LWJGL / natives / libs
+/desktop/build/
+/desktop/libs/
+/lwjgl3/build/
+/lwjgl3/libs/
+/lwjgl3/native/
+/lwjgl2/build/
+/lwjgl2/libs/
+/lwjgl2/native/
+
+# Keystore temporário do Android (se gerado localmente)
+debug.keystore
+
+# Gradle wrapper jar normalmente é versionado — não ignore.
+# Se você tiver regras que ignorem 'gradle' globalmente, garanta o wrapper:
+!/gradle/wrapper/gradle-wrapper.jar
