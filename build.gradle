@@ -1,0 +1,11 @@
+buildscript {
+    repositories { mavenCentral() }
+}
+allprojects {
+    apply plugin: 'java'
+    repositories { mavenCentral() }
+    sourceCompatibility = Integer.parseInt(project.findProperty('javaVersion') ?: '17')
+    targetCompatibility = Integer.parseInt(project.findProperty('javaVersion') ?: '17')
+}
+// ...existing code...
+

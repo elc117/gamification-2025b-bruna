@@ -1,0 +1,14 @@
+plugins {
+    id 'application'
+}
+dependencies {
+    implementation project(':core')
+    implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:${project.rootProject.findProperty('gdxVersion')}"
+    runtimeOnly "com.badlogicgames.gdx:gdx-platform:${project.rootProject.findProperty('gdxVersion')}:natives-desktop"
+}
+application {
+    // Gradle 7+: use mainClass; se usar versão antiga do Gradle, substitua por mainClassName
+    mainClass = 'com.example.game.desktop.DesktopLauncher'
+}
+// ...existing code...
+
