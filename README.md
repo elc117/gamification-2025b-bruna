@@ -34,3 +34,20 @@ Useful Gradle tasks and flags:
 
 Note that most tasks that are not specific to a single project can be run with `name:` prefix, where the `name` should be replaced with the ID of a specific project.
 For example, `core:clean` removes `build` folder only from the `core` project.
+
+
+
+
+Tela inicial + menu (Start, Options, Exit).
+Cena principal com um sprite do jogador que se move (teclado/touch).
+Colisões simples entre jogador e objetos.
+Pontuação e UI na tela (label).
+Som (efeitos + música).
+Salvar/recuperar progresso (Preferences).
+Build HTML e teste no navegador.
+Polimento: animações, partículas, otimização, deploy.
+
+
+# Referências
+- [Documentação oficial do libGDX](https://libgdx.com/wiki/)
+- [Creating a Simple Game in libGDX](https://youtu.be/aipDYyh1Mlc)
