@@ -51,3 +51,4 @@ Polimento: animações, partículas, otimização, deploy.
 # Referências
 - [Documentação oficial do libGDX](https://libgdx.com/wiki/)
 - [Creating a Simple Game in libGDX](https://youtu.be/aipDYyh1Mlc)
+- [Cursor Visibility](https://libgdx.com/wiki/input/cursor-visibility-and-catching)
