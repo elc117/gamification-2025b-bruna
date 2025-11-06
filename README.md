@@ -38,17 +38,17 @@ For example, `core:clean` removes `build` folder only from the `core` project.
 
 
 
-Tela inicial + menu (Start, Options, Exit).
-Cena principal com um sprite do jogador que se move (teclado/touch).
-Colisões simples entre jogador e objetos.
-Pontuação e UI na tela (label).
-Som (efeitos + música).
-Salvar/recuperar progresso (Preferences).
-Build HTML e teste no navegador.
-Polimento: animações, partículas, otimização, deploy.
+Tela inicial (Jogar, Regras, Ranking).
+Tela de jogo (tabuleiro, 6 cores, 8 tentativas).
+Tela de fim de jogo (você venceu, você perdeu, ranking).
+Sistema de pontuação baseado no número de tentativas.
+Armazenamento local do ranking (em um csv).
+Tela de regras do jogo (explicando como jogar).
 
 
 # Referências
-- [Documentação oficial do libGDX](https://libgdx.com/wiki/)
-- [Creating a Simple Game in libGDX](https://youtu.be/aipDYyh1Mlc)
+- [Documentação oficial do libGDX](https://libgdx.com/dev/)
+- [Creating a Simple Game in libGDX](https://libgdx.com/wiki/start/a-simple-game)
+- [Extending the Simple Game](https://libgdx.com/wiki/start/simple-game-extended)
 - [Cursor Visibility](https://libgdx.com/wiki/input/cursor-visibility-and-catching)
+- [Buttons](https://libgdxinfo.wordpress.com/buttons-scene2d/)
