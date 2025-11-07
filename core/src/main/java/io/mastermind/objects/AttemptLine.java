@@ -33,4 +33,13 @@ public class AttemptLine {
         positions.add(fourth);
         return positions;
     }
+
+    public Boolean isFull() {
+        for (Position p : getPositions()) {
+            if (p.getColorName() == null) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
