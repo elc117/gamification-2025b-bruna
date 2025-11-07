@@ -22,21 +22,6 @@ public class MainMenuScreen implements Screen {
     public void show() {
         background = new Texture("background/fundo-vazio.png");
         main.stage.clear();
-
-
-//        TextButton regrasButton = new TextButton("Regras", main.skin);
-//        regrasButton.setSize(140f, 80f);
-//        regrasButton.setPosition(130f, 250f);
-//        regrasButton.addListener(new ClickListener() {
-//            @Override
-//            public void clicked(InputEvent event, float x, float y) {
-//                System.out.println("Button clicked");
-//                main.setScreen(new RuleScreen(main));
-//            }
-//        });
-//        main.stage.addActor(regrasButton);
-
-
     }
 
     @Override
@@ -62,7 +47,6 @@ public class MainMenuScreen implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Button clicked");
                 main.setScreen(new GameScreen(main));
-//                dispose();
             }
         });
         main.stage.addActor(jogarButton);
@@ -75,7 +59,6 @@ public class MainMenuScreen implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Button clicked");
                 main.setScreen(new RankingScreen(main));
-//                dispose();
             }
         });
         main.stage.addActor(rankingButton);

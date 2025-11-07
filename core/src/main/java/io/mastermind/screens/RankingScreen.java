@@ -11,7 +11,6 @@ import io.mastermind.MainMenuScreen;
 
 public class RankingScreen implements Screen {
     private Texture background;
-    TextButton button;
     final Main main;
 
     public RankingScreen(final Main game) {
@@ -39,7 +38,7 @@ public class RankingScreen implements Screen {
         main.font.getData().setScale(.05f);
         main.font.draw(main.batch, "Ranking", 2.5f, 11f);
 
-        button = new TextButton("Voltar", main.skin);
+        TextButton button = new TextButton("Voltar", main.skin);
         button.setSize(100f, 40f);
         button.setPosition(150f, 100f);
         button.addListener(new ClickListener() {
