@@ -22,11 +22,11 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 public class Main extends Game {
     private Cursor customCursor;
 
-    SpriteBatch batch;
-    FitViewport viewport;
-    BitmapFont font;
-    Stage stage;
-    Skin skin;
+    public SpriteBatch batch;
+    public FitViewport viewport;
+    public BitmapFont font;
+    public Stage stage;
+    public Skin skin;
 
     Vector2 touchPos = new Vector2();
 

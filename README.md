@@ -43,7 +43,6 @@ Tela de jogo (tabuleiro, 6 cores, 8 tentativas).
 Tela de fim de jogo (você venceu, você perdeu, ranking).
 Sistema de pontuação baseado no número de tentativas.
 Armazenamento local do ranking (em um csv).
-Tela de regras do jogo (explicando como jogar).
 
 
 # Referências
