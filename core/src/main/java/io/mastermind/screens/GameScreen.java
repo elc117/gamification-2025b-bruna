@@ -53,17 +53,42 @@ public class GameScreen implements Screen {
                 @Override
                 public DragAndDrop.Payload dragStart(InputEvent inputEvent, float v, float v1, int i) {
                     DragAndDrop.Payload payload = new DragAndDrop.Payload();
-                    payload.setDragActor(getActor());
-                    main.stage.addActor(getActor());
-                    dragAndDrop.setDragActorPosition(getActor().getWidth() / 2, -getActor().getHeight() / 2);
-
+                    Image dragImage = new Image(((Image) ball.getActor()).getDrawable());
+                    float w = ball.getActor().getWidth();
+                    float h = ball.getActor().getHeight();
+                    dragImage.setSize(w, h);
+                    payload.setDragActor(dragImage);
+                    payload.setObject(ball);
+                    dragAndDrop.setDragActorPosition(w / 150f, h / 150f);
                     return payload;
                 }
 
                 @Override
                 public void dragStop(InputEvent event, float x, float y, int pointer, DragAndDrop.Payload payload, DragAndDrop.Target target) {
-                    if (target == null){
-                        ((Position) ball.getActor().getUserObject()).add(ball.getActor());
+                    try {
+                        if (target == null) {
+                            Object obj = payload.getObject();
+                            if (obj instanceof Ball) {
+                                Ball b = (Ball) obj;
+                                Position holder = b.getHolder();
+                                if (holder != null) {
+                                    b.getActor().remove();
+                                    holder.addActor(b.getActor());
+                                    b.getActor().setPosition(holder.getX(), holder.getY());
+                                } else {
+                                    b.getActor().remove();
+                                    main.stage.addActor(b.getActor());
+                                }
+                            } else {
+                                Image img = (Image) payload.getDragActor();
+                                if (img != null) {
+                                    img.remove();
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                        System.err.println("Error in dragStop: " + e);
+                        e.printStackTrace();
                     }
                 }
             });
@@ -78,8 +103,26 @@ public class GameScreen implements Screen {
 
                 @Override
                 public void drop(DragAndDrop.Source source, DragAndDrop.Payload payload, float v, float v1, int i) {
-                    position.add((Image) payload.getDragActor());
-                    payload.getDragActor().setUserObject(position);
+                    try {
+                        Object obj = payload.getObject();
+                        if (obj instanceof Ball) {
+                            Ball b = (Ball) obj;
+                            b.getActor().remove();
+                            position.addActor(b.getActor());
+                            b.getActor().setPosition(position.getX(), position.getY());
+                            b.setHolder(position);
+                        } else {
+                            Image img = (Image) payload.getDragActor();
+                            if (img != null) {
+                                img.remove();
+                                position.addActor(img);
+                                img.setPosition(45f, 45f);
+                            }
+                        }
+                    } catch (Exception e) {
+                        System.err.println("Error in drop: " + e);
+                        e.printStackTrace();
+                    }
                 }
             });
         }
@@ -162,6 +205,7 @@ public class GameScreen implements Screen {
         });
         main.stage.addActor(button);
         for (Ball ball : balls) main.stage.addActor(ball.actor);
+        for (Position pos : attemptLine.getPositions()) main.stage.addActor(pos);
 
 //        bucketSprite.draw(main.batch);
 //

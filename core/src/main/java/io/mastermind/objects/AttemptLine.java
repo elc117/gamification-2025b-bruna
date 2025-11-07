@@ -10,17 +10,17 @@ public class AttemptLine {
     Position fourth;
 
     public AttemptLine() {
-        first = createWindow(0.9f);
-        second = createWindow(2f);
-        third = createWindow(3.1f);
-        fourth = createWindow(4.2f);
+        first = createWindow(50f);
+        second = createWindow(105f);
+        third = createWindow(158f);
+        fourth = createWindow(215f);
     }
 
     private Position createWindow(float positionX) {
         Position customWindow = new Position();
-        customWindow.setSize(1, 1);
+        customWindow.setSize(50f, 50f);
         customWindow.setVisible(true);
-        customWindow.setPosition(positionX, 1.9f);
+        customWindow.setPosition(positionX, 100f);
 
         return customWindow;
     }
