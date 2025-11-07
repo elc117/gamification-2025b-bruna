@@ -1,19 +1,12 @@
 package io.mastermind.objects;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
-public class Position extends Window {
-
-    private static final WindowStyle windowStyle;
-
-    static {
-        windowStyle = new WindowStyle();
-    }
+public class Position extends Table {
 
     public Position() {
-        super("", windowStyle);
-        setSize(800, 600);
-        setClip(false);
+        super();
+        setSize(1f, 1f);
         setTransform(true);
     }
 }

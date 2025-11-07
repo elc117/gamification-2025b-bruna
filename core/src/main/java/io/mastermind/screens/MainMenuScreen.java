@@ -13,6 +13,9 @@ public class MainMenuScreen implements Screen {
 
     final Main main;
 
+    private TextButton jogarButton;
+    private TextButton rankingButton;
+
     public MainMenuScreen(final Main game) {
         this.main = game;
     }
@@ -38,25 +41,25 @@ public class MainMenuScreen implements Screen {
         main.font.getData().setScale(.05f);
         main.font.draw(main.batch, "Mastermind", 2f, 11f);
 
-        TextButton jogarButton = new TextButton("Jogar", main.skin);
+        jogarButton = new TextButton("Jogar", main.skin);
         jogarButton.setSize(140f, 80f);
         jogarButton.setPosition(130f, 350f);
         jogarButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Button clicked");
+                System.out.println("Jogar clicked");
                 main.setScreen(new GameScreen(main));
             }
         });
         main.stage.addActor(jogarButton);
 
-        TextButton rankingButton = new TextButton("Ranking", main.skin);
+        rankingButton = new TextButton("Ranking", main.skin);
         rankingButton.setSize(140f, 80f);
         rankingButton.setPosition(130f, 250f);
         rankingButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Button clicked");
+                System.out.println("Ranking clicked");
                 main.setScreen(new RankingScreen(main));
             }
         });

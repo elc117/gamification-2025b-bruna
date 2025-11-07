@@ -1,29 +1,36 @@
 package io.mastermind.objects;
 
+import java.util.ArrayList;
+
 public class AttemptLine {
 
-//    TODO: ajustar o tipo das posicoes
     Position first;
     Position second;
     Position third;
     Position fourth;
 
-    AttemptLine() {
-        first = createWindow(1, 1, 0.9f, 1.9f);
-        second = createWindow(1, 1, 2f, 1.9f);
-        third = createWindow(1, 1, 3.1f, 1.9f);
-        fourth = createWindow(1, 1, 4.2f, 1.9f);
+    public AttemptLine() {
+        first = createWindow(0.9f);
+        second = createWindow(2f);
+        third = createWindow(3.1f);
+        fourth = createWindow(4.2f);
     }
 
-    private Position createWindow(float width, float height, float positionX, float positionY) {
-
+    private Position createWindow(float positionX) {
         Position customWindow = new Position();
-        customWindow.setSize(width, height);
+        customWindow.setSize(1, 1);
         customWindow.setVisible(true);
-        customWindow.setMovable(true);
-        customWindow.setPosition(positionX, positionY);
+        customWindow.setPosition(positionX, 1.9f);
 
         return customWindow;
+    }
 
+    public ArrayList<Position> getPositions() {
+        ArrayList<Position> positions = new ArrayList<Position>();
+        positions.add(first);
+        positions.add(second);
+        positions.add(third);
+        positions.add(fourth);
+        return positions;
     }
 }
