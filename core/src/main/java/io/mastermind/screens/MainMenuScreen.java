@@ -1,4 +1,4 @@
-package io.mastermind;
+package io.mastermind.screens;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
@@ -6,8 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
-import io.mastermind.screens.GameScreen;
-import io.mastermind.screens.RankingScreen;
+import io.mastermind.Main;
 
 public class MainMenuScreen implements Screen {
     private Texture background;

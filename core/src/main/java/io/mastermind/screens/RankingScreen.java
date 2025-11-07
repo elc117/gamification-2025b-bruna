@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import io.mastermind.Main;
-import io.mastermind.MainMenuScreen;
 
 public class RankingScreen implements Screen {
     private Texture background;

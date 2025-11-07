@@ -6,18 +6,22 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import io.mastermind.Main;
-import io.mastermind.MainMenuScreen;
+import io.mastermind.objects.Ball;
+
+import java.util.ArrayList;
 
 public class GameScreen implements Screen {
     final Main main;
 
     Texture background;
+
+    ArrayList<Ball> balls = new ArrayList<Ball>();
     Texture amareloTexture;
     Texture azulTexture;
     Texture laranjaTexture;
@@ -31,7 +35,12 @@ public class GameScreen implements Screen {
     Sprite rosaSprite;
     Sprite verdeSprite;
     Sprite vermelhoSprite;
+    Sprite teste1;
+    Sprite teste2;
+    Sprite teste3;
+    Sprite teste4;
 
+    private DragAndDrop dragAndDrop;
     Sprite bucketSprite;
     Vector2 touchPos;
     Array<Sprite> dropSprites;
@@ -43,6 +52,12 @@ public class GameScreen implements Screen {
     public GameScreen(final Main game) {
         this.main = game;
 
+        balls.add(new Ball("amarelo", 1.18f, 0.7f));
+        balls.add(new Ball("azul", 3.18f, 0.7f));
+        balls.add(new Ball("laranja", 4.18f, 0.7f));
+        balls.add(new Ball("rosa", 2.18f, 0.7f));
+        balls.add(new Ball("verde", 5.18f, 0.7f));
+        balls.add(new Ball("vermelho", 6.18f, 0.7f));
 //        bucketTexture = new Texture("components/button.png");
 
 //        bucketSprite = new Sprite(bucketTexture);
@@ -59,36 +74,49 @@ public class GameScreen implements Screen {
     @Override
     public void show() {
         background = new Texture("background/fundo-sem-texto-e-opcoes.png");
-        amareloTexture = new Texture("circle/amarelo.png");
-        azulTexture = new Texture("circle/azul.png");
-        laranjaTexture = new Texture("circle/laranja.png");
-        rosaTexture = new Texture("circle/rosa.png");
-        verdeTexture = new Texture("circle/verde.png");
-        vermelhoTexture = new Texture("circle/vermelho.png");
+//        amareloTexture = new Texture("circle/amarelo.png");
+//        azulTexture = new Texture("circle/azul.png");
+//        laranjaTexture = new Texture("circle/laranja.png");
+//        rosaTexture = new Texture("circle/rosa.png");
+//        verdeTexture = new Texture("circle/verde.png");
+//        vermelhoTexture = new Texture("circle/vermelho.png");
+//
+//        amareloSprite = new Sprite(amareloTexture);
+//        amareloSprite.setSize(0.9f, 0.9f);
+//        amareloSprite.setPosition(1.18f, 0.7f);
+//
+//        rosaSprite = new Sprite(rosaTexture);
+//        rosaSprite.setSize(0.9f, 0.9f);
+//        rosaSprite.setPosition(2.18f, 0.7f);
+//
+//        azulSprite = new Sprite(azulTexture);
+//        azulSprite.setSize(0.9f, 0.9f);
+//        azulSprite.setPosition(3.18f, 0.7f);
+//
+//        laranjaSprite = new Sprite(laranjaTexture);
+//        laranjaSprite.setSize(0.9f, 0.9f);
+//        laranjaSprite.setPosition(4.18f, 0.7f);
+//
+//        verdeSprite = new Sprite(verdeTexture);
+//        verdeSprite.setSize(0.9f, 0.9f);
+//        verdeSprite.setPosition(5.18f, 0.7f);
+//
+//        vermelhoSprite = new Sprite(vermelhoTexture);
+//        vermelhoSprite.setSize(0.9f, 0.9f);
+//        vermelhoSprite.setPosition(6.18f, 0.7f);
 
-        amareloSprite = new Sprite(amareloTexture);
-        amareloSprite.setSize(0.9f, 0.9f);
-        amareloSprite.setPosition(1.18f, 0.7f);
-
-        rosaSprite = new Sprite(rosaTexture);
-        rosaSprite.setSize(0.9f, 0.9f);
-        rosaSprite.setPosition(2.18f, 0.7f);
-
-        azulSprite = new Sprite(azulTexture);
-        azulSprite.setSize(0.9f, 0.9f);
-        azulSprite.setPosition(3.18f, 0.7f);
-
-        laranjaSprite = new Sprite(laranjaTexture);
-        laranjaSprite.setSize(0.9f, 0.9f);
-        laranjaSprite.setPosition(4.18f, 0.7f);
-
-        verdeSprite = new Sprite(verdeTexture);
-        verdeSprite.setSize(0.9f, 0.9f);
-        verdeSprite.setPosition(5.18f, 0.7f);
-
-        vermelhoSprite = new Sprite(vermelhoTexture);
-        vermelhoSprite.setSize(0.9f, 0.9f);
-        vermelhoSprite.setPosition(6.18f, 0.7f);
+//        teste1 = new Sprite(verdeTexture);
+//        teste1.setSize(1, 1);
+//        teste1.setPosition(0.9f, 1.9f);
+//        teste2 = new Sprite(rosaTexture);
+//        teste2.setSize(1, 1);
+//        teste2.setPosition(2f, 1.9f);
+//        teste3 = new Sprite(laranjaTexture);
+//        teste3.setSize(1, 1);
+//        teste3.setPosition(3.1f, 1.9f);
+//        teste4 = new Sprite(amareloTexture);
+//        teste4.setSize(1, 1);
+//        teste4.setPosition(4.2f, 1.9f);
 
         main.stage.clear();
         // start the playback of the background music
@@ -164,12 +192,9 @@ public class GameScreen implements Screen {
             }
         });
         main.stage.addActor(button);
-        amareloSprite.draw(main.batch);
-        azulSprite.draw(main.batch);
-        laranjaSprite.draw(main.batch);
-        rosaSprite.draw(main.batch);
-        verdeSprite.draw(main.batch);
-        vermelhoSprite.draw(main.batch);
+        for (Ball ball : balls) {
+            ball.sprite.draw(main.batch);
+        }
 //        bucketSprite.draw(main.batch);
 //
 //        main.font.draw(main.batch, "Drops collected: " + dropsGathered, 0, worldHeight);

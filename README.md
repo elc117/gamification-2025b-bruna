@@ -52,3 +52,4 @@ Armazenamento local do ranking (em um csv).
 - [Cursor Visibility](https://libgdx.com/wiki/input/cursor-visibility-and-catching)
 - [Buttons](https://libgdxinfo.wordpress.com/buttons-scene2d/)
 - [Skins](https://github.com/czyzby/gdx-skins/tree/master/lgdxs)
+- [Drag and Drop Elements](https://www.youtube.com/watch?v=9g8bkfQN9oU)
