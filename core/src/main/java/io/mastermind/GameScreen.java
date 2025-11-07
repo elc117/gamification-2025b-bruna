@@ -28,9 +28,10 @@ public class GameScreen implements Screen {
         this.game = game;
 
         // load the images for the background, bucket and droplet
-        backgroundTexture = new Texture("background.png");
-        bucketTexture = new Texture("bucket.png");
-        dropTexture = new Texture("drop.png");
+        // Use existing assets under assets/ directory
+        backgroundTexture = new Texture("background/fundo-completo.png");
+        bucketTexture = new Texture("components/button.png");
+        dropTexture = new Texture("circle/azul.png");
 
         bucketSprite = new Sprite(bucketTexture);
         bucketSprite.setSize(1, 1);

@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -25,6 +26,7 @@ public class Main extends Game {
     FitViewport viewport;
     BitmapFont font;
     Stage stage;
+    Skin skin;
 
     Vector2 touchPos = new Vector2();
 
@@ -38,6 +40,8 @@ public class Main extends Game {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
+        skin = new Skin(Gdx.files.internal("skin/lgdxs-ui.json"));
+
         Pixmap orig = new Pixmap(Gdx.files.internal("cursor.png"));
         int desiredSize = 32;
         Pixmap scaled = new Pixmap(desiredSize, desiredSize, orig.getFormat());
@@ -49,7 +53,6 @@ public class Main extends Game {
 
         font = new BitmapFont();
         font.setUseIntegerPositions(false);
-        // Agora que o viewport existe, podemos usar suas dimensões
         font.getData().setScale(viewport.getWorldHeight() / (float) Gdx.graphics.getHeight());
 
         this.setScreen(new MainMenuScreen(this));

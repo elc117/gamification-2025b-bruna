@@ -52,3 +52,4 @@ Tela de regras do jogo (explicando como jogar).
 - [Extending the Simple Game](https://libgdx.com/wiki/start/simple-game-extended)
 - [Cursor Visibility](https://libgdx.com/wiki/input/cursor-visibility-and-catching)
 - [Buttons](https://libgdxinfo.wordpress.com/buttons-scene2d/)
+- [Skins](https://github.com/czyzby/gdx-skins/tree/master/lgdxs)
