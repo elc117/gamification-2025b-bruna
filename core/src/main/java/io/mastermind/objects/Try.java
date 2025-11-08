@@ -8,8 +8,8 @@ public class Try {
     public String secondColor;
     public String thirdColor;
     public String fourthColor;
-    public Integer correctPositionsAndColors;
-    public Integer correctColors;
+    public Integer correctPositionsAndColors = 0;
+    public Integer correctColorsOnly = 0;
     public Boolean isWinningTry;
     public Integer attemptNumber;
 
@@ -33,15 +33,15 @@ public class Try {
 
     public void setChecks(Integer correctPositionsAndColors, Integer correctColors) {
         this.correctPositionsAndColors = correctPositionsAndColors;
-        this.correctColors = correctColors;
+        this.correctColorsOnly = correctColors;
     }
 
     public Integer getCorrectPositions() {
         return correctPositionsAndColors;
     }
 
-    public Integer getCorrectColors() {
-        return correctColors;
+    public Integer getCorrectColorsOnly() {
+        return correctColorsOnly;
     }
 
     public void setWinningTry(Boolean isWinningTry) {
@@ -50,5 +50,9 @@ public class Try {
 
     public Boolean getIsWinningTry() {
         return isWinningTry;
+    }
+
+    public Integer getAttemptNumber() {
+        return attemptNumber;
     }
 }

@@ -34,12 +34,18 @@ public class AttemptLine {
         return positions;
     }
 
-    public Boolean isFull() {
+    public ArrayList<String> getColors() {
+        ArrayList<String> colors = new ArrayList<String>();
         for (Position p : getPositions()) {
-            if (p.getColorName() == null) {
-                return false;
-            }
+            colors.add(p.getColorName());
         }
-        return true;
+        return colors;
+    }
+
+    public Boolean isFull() {
+        return first.getColorName() != null &&
+            second.getColorName() != null &&
+            third.getColorName() != null &&
+            fourth.getColorName() != null;
     }
 }

@@ -3,7 +3,7 @@ package io.mastermind.objects;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class BallNonDragable extends Ball {
-    Sprite sprite;
+    public Sprite sprite;
 
     public BallNonDragable(String color, float x, float y) {
         super(color);
