@@ -36,9 +36,13 @@ Note that most tasks that are not specific to a single project can be run with `
 For example, `core:clean` removes `build` folder only from the `core` project.
 
 
+TODO:
+    - salvar vitorias em um csv ou txt
+    - tela final do jogo (vitoria/derrota)
+    - ranking baseado no numero de tentativas
+    - deploy em html
 
-
-Tela inicial (Jogar, Regras, Ranking).
+Tela inicial (Jogar, Ranking).
 Tela de jogo (tabuleiro, 6 cores, 8 tentativas).
 Tela de fim de jogo (você venceu, você perdeu, ranking).
 Sistema de pontuação baseado no número de tentativas.

@@ -270,15 +270,12 @@ public class GameScreen implements Screen {
         for (Position pos : attemptLine.getPositions()) {
             pos.clear();
         }
-        //        TODO: validar isso aqui
-//        balls.add(new BallDragable("amarelo", 40f, 40f));
-//        balls.add(new BallDragable("azul", 90f, 40f));
-//        balls.add(new BallDragable("laranja", 140f, 40f));
-//        balls.add(new BallDragable("rosa", 190f, 40f));
-//        balls.add(new BallDragable("verde", 240f, 40f));
-//        balls.add(new BallDragable("vermelho", 290f, 40f));
+
+        Float startX = 40f;
         for (BallDragable ball : balls) {
             ball.setHolder(null);
+            ball.setPosition(startX, 40f);
+            startX += 50f;
         }
     }
 
