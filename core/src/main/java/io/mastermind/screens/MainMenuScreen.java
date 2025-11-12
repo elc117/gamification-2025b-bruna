@@ -15,6 +15,7 @@ public class MainMenuScreen implements Screen {
 
     private TextButton jogarButton;
     private TextButton rankingButton;
+    private TextButton rulesButton;
 
     public MainMenuScreen(final Main game) {
         this.main = game;
@@ -23,6 +24,37 @@ public class MainMenuScreen implements Screen {
     @Override
     public void show() {
         background = new Texture("background/fundo-vazio.png");
+
+        jogarButton = new TextButton("Jogar", main.skin);
+        jogarButton.setSize(140f, 80f);
+        jogarButton.setPosition(130f, 350f);
+        jogarButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                main.setScreen(new GameScreen(main));
+            }
+        });
+
+        rankingButton = new TextButton("Ranking", main.skin);
+        rankingButton.setSize(140f, 80f);
+        rankingButton.setPosition(130f, 250f);
+        rankingButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                main.setScreen(new RankingScreen(main));
+            }
+        });
+
+        rulesButton = new TextButton("Regras", main.skin);
+        rulesButton.setSize(140f, 80f);
+        rulesButton.setPosition(130f, 150f);
+        rulesButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                main.setScreen(new RuleScreen(main));
+            }
+        });
+
         main.stage.clear();
     }
 
@@ -41,29 +73,9 @@ public class MainMenuScreen implements Screen {
         main.font.getData().setScale(.05f);
         main.font.draw(main.batch, "Mastermind", 2f, 11f);
 
-        jogarButton = new TextButton("Jogar", main.skin);
-        jogarButton.setSize(140f, 80f);
-        jogarButton.setPosition(130f, 350f);
-        jogarButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Jogar clicked");
-                main.setScreen(new GameScreen(main));
-            }
-        });
         main.stage.addActor(jogarButton);
-
-        rankingButton = new TextButton("Ranking", main.skin);
-        rankingButton.setSize(140f, 80f);
-        rankingButton.setPosition(130f, 250f);
-        rankingButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Ranking clicked");
-                main.setScreen(new RankingScreen(main));
-            }
-        });
         main.stage.addActor(rankingButton);
+        main.stage.addActor(rulesButton);
 
         main.batch.end();
         main.stage.act(delta);

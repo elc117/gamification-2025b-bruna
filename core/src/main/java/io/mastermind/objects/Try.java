@@ -22,6 +22,15 @@ public class Try {
         this.isWinningTry = false;
     }
 
+    public Try(ArrayList<String> colors, Integer attemptNumber) {
+        this.attemptNumber = attemptNumber;
+        this.firstColor = colors.get(0);
+        this.secondColor = colors.get(1);
+        this.thirdColor = colors.get(2);
+        this.fourthColor = colors.get(3);
+        this.isWinningTry = false;
+    }
+
     public ArrayList<String> getColors() {
         ArrayList<String> colors = new ArrayList<String>();
         colors.add(firstColor);

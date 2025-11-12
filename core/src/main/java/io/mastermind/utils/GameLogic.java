@@ -1,4 +1,4 @@
-package io.mastermind;
+package io.mastermind.utils;
 
 import io.mastermind.objects.AttemptLine;
 import io.mastermind.objects.Position;
@@ -20,11 +20,10 @@ public class GameLogic {
         for (int i = 0; i < 4; i++) {
             sequence.add(colorList.get(i));
         }
-        System.out.println("Raffled sequence: " + sequence);
+        System.out.println("Shuffle sequence: " + sequence);
     }
 
     public Try processAttempt(AttemptLine attemptLine) {
-        System.out.println("Processing attempt: " + attemptLine);
         if (tries.size() < 8) {
             boolean added = addAttempt(attemptLine);
             if (!added) {
@@ -38,33 +37,24 @@ public class GameLogic {
         return null;
     }
 
-    /**
-     * Adds an attempt built from the given AttemptLine.
-     * Returns true if the attempt was added, false if the AttemptLine was invalid (contains nulls).
-     */
     private boolean addAttempt(AttemptLine attemptLine) {
-        System.out.println("Attempt added");
         ArrayList<String> colors = new ArrayList<String>();
         for (Position pos : attemptLine.getPositions()) {
             colors.add(pos.getColorName());
         }
-        Try attempt = new Try(colors.get(0), colors.get(1), colors.get(2), colors.get(3), tries.size() + 1);
+        Try attempt = new Try(colors, tries.size() + 1);
         tries.add(attempt);
         return true;
     }
 
     private Try checkAttempt() {
-        // Two-pass matching to avoid ConcurrentModificationException and double counting
-        System.out.println("Checking attempt");
         Try lastTry = tries.get(tries.size() - 1);
         int correctPositionColor = 0;
         int correctColor = 0;
 
-        // Defensive copies that we can mutate safely
         ArrayList<String> attemptColors = new ArrayList<String>(lastTry.getColors());
         ArrayList<String> seqCopy = new ArrayList<String>(sequence);
 
-        // First pass: exact matches by index -> mark matched slots as null
         int min = Math.min(attemptColors.size(), seqCopy.size());
         for (int i = 0; i < min; i++) {
             String a = attemptColors.get(i);
@@ -76,7 +66,6 @@ public class GameLogic {
             }
         }
 
-        // Second pass: for remaining (non-null) attempt colors, look for a match in seqCopy and consume it
         for (int i = 0; i < attemptColors.size(); i++) {
             String a = attemptColors.get(i);
             if (a == null) continue;
@@ -84,7 +73,7 @@ public class GameLogic {
                 String s = seqCopy.get(j);
                 if (Objects.equals(a, s)) {
                     correctColor++;
-                    seqCopy.set(j, null); // consume so it isn't double counted
+                    seqCopy.set(j, null);
                     break;
                 }
             }
@@ -95,9 +84,10 @@ public class GameLogic {
             lastTry.setWinningTry(true);
         }
 
-        System.out.println("Correct Positions: " + correctPositionColor + ", Correct Colors: " + correctColor);
-        System.out.println(lastTry);
         return lastTry;
     }
 
+    public ArrayList<String> getSequence(){
+        return sequence;
+    }
 }

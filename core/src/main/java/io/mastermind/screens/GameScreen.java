@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -13,16 +12,15 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
-import io.mastermind.GameLogic;
 import io.mastermind.Main;
 import io.mastermind.objects.*;
+import io.mastermind.utils.GameLogic;
 
 import java.util.ArrayList;
 
 public class GameScreen implements Screen {
     final Main main;
 
-    ShapeRenderer shapeRenderer;
     Texture background;
     TextButton button;
 
@@ -31,7 +29,7 @@ public class GameScreen implements Screen {
 
     GameLogic logic = new GameLogic();
 
-    private DragAndDrop dragAndDrop;
+    private final DragAndDrop dragAndDrop = new DragAndDrop();
 
     public GameScreen(final Main game) {
         this.main = game;
@@ -42,9 +40,6 @@ public class GameScreen implements Screen {
         balls.add(new BallDragable("rosa", 190f, 40f));
         balls.add(new BallDragable("verde", 240f, 40f));
         balls.add(new BallDragable("vermelho", 290f, 40f));
-
-        dragAndDrop = new DragAndDrop();
-        shapeRenderer = new ShapeRenderer();
 
         for (final BallDragable ball : balls) {
             dragAndDrop.addSource(new DragAndDrop.Source(ball.getActor()) {
@@ -69,13 +64,12 @@ public class GameScreen implements Screen {
                             if (obj instanceof Ball) {
                                 BallDragable b = (BallDragable) obj;
                                 Position holder = b.getHolder();
+                                b.getActor().remove();
                                 if (holder != null) {
-                                    b.getActor().remove();
                                     holder.setColor(b.getColor());
                                     holder.addActor(b.getActor());
                                     b.getActor().setPosition(holder.getX(), holder.getY());
                                 } else {
-                                    b.getActor().remove();
                                     main.stage.addActor(b.getActor());
                                 }
                             } else {
@@ -131,34 +125,29 @@ public class GameScreen implements Screen {
     @Override
     public void show() {
         background = new Texture("background/fundo-sem-texto-e-opcoes.png");
-        button = new TextButton("Confirmar", main.skin);
 
+        button = new TextButton("Confirmar", main.skin);
         button.setSize(90f, 50f);
         button.setPosition(270f, 100f);
-
         button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println(attemptLine.getColors());
-                System.out.println(attemptLine.isFull());
                 if (!attemptLine.isFull()) {
                     System.err.println("Please fill all positions before confirming.");
                     return;
                 }
                 Try attempt = logic.processAttempt(attemptLine);
-                System.out.println("Processed attempt: " + attempt);
                 if (attempt == null) {
+                    // TODO: mostrar aviso q n ta cheia a linha
                     System.err.println("processAttempt returned null - attempt invalid or internal error.");
                     return;
                 }
 
-                if (attempt.isWinningTry) {
-                    endGame(true);
-                } else if (logic.tries.size() > 8) {
-                    endGame(false);
-                } else {
+                if (!attempt.isWinningTry && logic.tries.size() < 8) {
                     drawAttempt(attempt);
                     clearAttemptLine();
+                } else {
+                    endGame(attempt.isWinningTry, attempt);
                 }
             }
         });
@@ -179,6 +168,7 @@ public class GameScreen implements Screen {
         main.batch.draw(background, 0, 0, worldWidth, worldHeight);
 
         main.stage.addActor(button);
+
         for (BallDragable ball : balls) main.stage.addActor(ball.getActor());
         for (Position pos : attemptLine.getPositions()) main.stage.addActor(pos);
 
@@ -214,7 +204,6 @@ public class GameScreen implements Screen {
     }
 
     public void drawAttempt(Try attempt) {
-        System.out.println("Drawing attempt: " + attempt.getColors());
         float startX = 52f;
         float spacingX = 55.5f;
         float spacingY = 62.5f;
@@ -233,7 +222,7 @@ public class GameScreen implements Screen {
 
         Texture blackTexture = new Texture(1, 1, Pixmap.Format.RGBA8888);
         Pixmap p = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
-        p.setColor(Color.BLACK);
+        p.setColor(Color.PURPLE);
         p.fill();
         blackTexture.draw(p, 0, 0);
         p.dispose();
@@ -243,7 +232,6 @@ public class GameScreen implements Screen {
             Image img = new Image(new TextureRegionDrawable(new TextureRegion(blackTexture)));
             img.setSize(10f, 10f);
             img.setPosition(startX + j * spacingX, (startY - (attempt.attemptNumber - 1) * spacingY) + 15f);
-            System.out.println("Placing black peg "+ j +" at: " + (startX + j * spacingX) + ", " + ((startY - (attempt.attemptNumber - 1) * spacingY) + 15f));
             main.stage.addActor(img);
             img.toFront();
         }
@@ -259,14 +247,12 @@ public class GameScreen implements Screen {
             Image img = new Image(new TextureRegionDrawable(new TextureRegion(whiteTexture)));
             img.setSize(10f, 10f);
             img.setPosition(startX + k * spacingX, (startY - (attempt.attemptNumber - 1) * spacingY) + 15f);
-            System.out.println("Placing white peg "+ k +" at: " + (startX + k * spacingX) + ", " + ((startY - (attempt.attemptNumber - 1) * spacingY) + 15f));
             main.stage.addActor(img);
             img.toFront();
         }
     }
 
     public void clearAttemptLine() {
-        System.out.println("Clearing attempt line");
         for (Position pos : attemptLine.getPositions()) {
             pos.clear();
         }
@@ -279,8 +265,8 @@ public class GameScreen implements Screen {
         }
     }
 
-    public void endGame(boolean won) {
+    public void endGame(boolean won, Try lastTry) {
         System.out.println("Game " + (won ? "won!" : "lost."));
-        // TODO: implement game end logic (e.g., show message, return to menu, etc.)
+        main.setScreen(new EndGameScreen(main, won, lastTry, logic.getSequence()));
     }
 }
