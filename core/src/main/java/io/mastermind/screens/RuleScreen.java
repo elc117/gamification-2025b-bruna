@@ -35,9 +35,17 @@ public class RuleScreen implements Screen {
         if (background != null) main.batch.draw(background, 0, 0, worldWidth, worldHeight);
 
         main.font.getData().setScale(.05f);
-        main.font.draw(main.batch, "Regras", 2.5f, 11f);
+        main.font.draw(main.batch, "Regras", 3f, 11f);
 
-        // TODO: escrever as regras
+        main.font.getData().setScale(.02f);
+        main.font.draw(main.batch, "Objetivo:", 1f, 8.5f);
+        main.font.draw(main.batch, "Descobrir a sequência em até 8 tentativas.", 1f, 8f);
+        main.font.draw(main.batch, "Existem 6 cores possíveis.", 1f, 7.5f);
+        main.font.draw(main.batch, "Cada tentativa usa 4 cores.", 1f, 7f);
+        main.font.draw(main.batch, "Feedback:", 1f, 6.5f);
+        main.font.draw(main.batch, "- Roxo: cor correta na posição correta.", 1f, 6f);
+        main.font.draw(main.batch, "- Branco: cor correta na posição incorreta.", 1f, 5.5f);
+        main.font.draw(main.batch, "Boa sorte!", 1f, 5f);
 
         TextButton button = new TextButton("Voltar", main.skin);
         button.setSize(100f, 40f);
@@ -45,7 +53,6 @@ public class RuleScreen implements Screen {
         button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Button clicked");
                 main.setScreen(new MainMenuScreen(main));
             }
         });
