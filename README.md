@@ -38,15 +38,9 @@ For example, `core:clean` removes `build` folder only from the `core` project.
 
 TODO:
     - salvar vitorias em um csv ou txt
-    - tela final do jogo (vitoria/derrota)
     - ranking baseado no numero de tentativas
+    - regras
     - deploy em html
-
-Tela inicial (Jogar, Ranking).
-Tela de jogo (tabuleiro, 6 cores, 8 tentativas).
-Tela de fim de jogo (você venceu, você perdeu, ranking).
-Sistema de pontuação baseado no número de tentativas.
-Armazenamento local do ranking (em um csv).
 
 
 # Referências
@@ -58,6 +52,7 @@ Armazenamento local do ranking (em um csv).
 - [Skins](https://github.com/czyzby/gdx-skins/tree/master/lgdxs)
 - [Drag and Drop Elements](https://www.youtube.com/watch?v=9g8bkfQN9oU)
 - [Input Text](https://libgdx.com/wiki/input/simple-text-input)
+- [Manipulação de arquivos csv](https://blog.formacao.dev/manipulacao-de-arquivos-csv-em-java-leitura-e-escrita/)
 
 
 Estrutura e conteúdo do README:

@@ -7,13 +7,20 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import io.mastermind.Main;
+import io.mastermind.objects.Ranking;
+import io.mastermind.utils.RankingLogic;
+
+import java.util.List;
 
 public class RankingScreen implements Screen {
     private Texture background;
     final Main main;
 
+    RankingLogic rankingLogic;
+
     public RankingScreen(final Main game) {
         this.main = game;
+        rankingLogic = new RankingLogic();
     }
 
     @Override
@@ -36,6 +43,15 @@ public class RankingScreen implements Screen {
 
         main.font.getData().setScale(.05f);
         main.font.draw(main.batch, "Ranking", 2.5f, 11f);
+
+        main.font.getData().setScale(.02f);
+        List<Ranking> ranking = rankingLogic.getRanking();
+        Float y = 8.5f;
+        for (Ranking position : ranking) {
+            String str = position.getName() + " - " + position.getQuantity() + " tentativas em " + position.getDate();
+            main.font.draw(main.batch, str, 1f, y);
+            y += 0.5f;
+        }
 
         TextButton button = new TextButton("Voltar", main.skin);
         button.setSize(100f, 40f);
