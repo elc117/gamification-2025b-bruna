@@ -16,21 +16,24 @@ public class RankingLogic {
     private final FileHandle file;
 
     public RankingLogic() {
-        this("ranking.csv");
+        String caminho = "ranking.csv";
+        if (isGwt()) {
+            this.file = Gdx.files.internal(caminho); // Só leitura no HTML5
+        } else {
+            this.file = Gdx.files.local(caminho); // Escrita/leitura no desktop/mobile
+            if (!this.file.exists()) {
+                FileHandle parent = this.file.parent();
+                if (parent != null && !parent.exists()) {
+                    parent.mkdirs();
+                }
+                this.file.writeString("", false);
+            }
+        }
+        lerCSV();
     }
 
-    public RankingLogic(String caminho) {
-        this.file = Gdx.files.local(caminho);
-
-        if (!this.file.exists()) {
-            FileHandle parent = this.file.parent();
-            if (parent != null && !parent.exists()) {
-                parent.mkdirs();
-            }
-            this.file.writeString("", false);
-        }
-
-        lerCSV();
+    private boolean isGwt() {
+        return Gdx.app.getType() == com.badlogic.gdx.Application.ApplicationType.WebGL;
     }
 
     public void lerCSV() {

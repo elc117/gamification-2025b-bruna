@@ -37,10 +37,9 @@ For example, `core:clean` removes `build` folder only from the `core` project.
 
 
 TODO:
-    - salvar vitorias em um csv ou txt
-    - ranking baseado no numero de tentativas
-    - regras
     - deploy em html
+    - ajustar as posições das coisas qnd rodar em html
+    - terminar o readme
 
 
 # Referências

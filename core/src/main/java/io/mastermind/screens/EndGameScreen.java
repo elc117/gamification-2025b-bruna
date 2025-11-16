@@ -17,7 +17,6 @@ import io.mastermind.objects.Try;
 import io.mastermind.utils.RankingLogic;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class EndGameScreen implements Screen {
     final Main main;
@@ -62,7 +61,13 @@ public class EndGameScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (won) {
-                    String date = new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date());
+                    java.util.Date now = new java.util.Date();
+                    int day = now.getDate();
+                    int month = now.getMonth() + 1;
+                    int year = now.getYear() + 1900;
+                    String dayStr = day < 10 ? "0" + day : String.valueOf(day);
+                    String monthStr = month < 10 ? "0" + month : String.valueOf(month);
+                    String date = dayStr + "/" + monthStr + "/" + year;
                     ranking.add(name, lastTry.attemptNumber, date);
                     main.setScreen(new RankingScreen(main));
                 } else {
