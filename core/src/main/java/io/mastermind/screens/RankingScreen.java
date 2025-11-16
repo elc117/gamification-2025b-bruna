@@ -50,7 +50,7 @@ public class RankingScreen implements Screen {
         for (Ranking position : ranking) {
             String str = position.getName() + " - " + position.getQuantity() + " tentativas em " + position.getDate();
             main.font.draw(main.batch, str, 1f, y);
-            y += 0.5f;
+            y -= 0.5f;
         }
 
         TextButton button = new TextButton("Voltar", main.skin);
@@ -59,7 +59,6 @@ public class RankingScreen implements Screen {
         button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Button clicked");
                 main.setScreen(new MainMenuScreen(main));
             }
         });

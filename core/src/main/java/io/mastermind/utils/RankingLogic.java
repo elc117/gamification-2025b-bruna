@@ -76,10 +76,10 @@ public class RankingLogic {
         Collections.sort(temp, new Comparator<Ranking>() {
             @Override
             public int compare(Ranking a, Ranking b) {
-                return Integer.compare(b.getQuantity(), a.getQuantity());
+                return Integer.compare(a.getQuantity(), b.getQuantity());
             }
         });
 
-        return temp.subList(0, Math.min(10, temp.size()));
+        return temp.subList(0, Math.min(15, temp.size()));
     }
 }
