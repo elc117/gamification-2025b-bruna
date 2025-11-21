@@ -2,7 +2,7 @@ package io.mastermind.objects;
 
 import com.badlogic.gdx.graphics.Texture;
 
-public class Ball {
+public abstract class Ball {
     String color;
     Texture texture;
 
